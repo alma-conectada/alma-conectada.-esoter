@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alma Conectada - Tienda Esotérica</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background-color: #0f0a1b;
+      color: #fff;
+    }
+    header {
+      background-color: #1e1026;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    h1 {
+      font-size: 3em;
+      color: #ffd700;
+      margin: 0;
+    }
+    header p {
+      font-size: 1.2em;
+      color: #ddd;
+    }
+    nav {
+      background-color: #301934;
+      text-align: center;
+      padding: 15px;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 20px;
+      font-weight: bold;
+    }
+    section {
+      max-width: 1000px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+    .servicio {
+      background-color: #28142c;
+      margin-bottom: 30px;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-wrap: wrap;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+    }
+    .servicio img {
+      width: 100%;
+      max-width: 300px;
+      object-fit: cover;
+    }
+    .servicio-content {
+      padding: 20px;
+      flex: 1;
+    }
+    .servicio h3 {
+      color: #ffccff;
+      font-size: 1.6em;
+      margin-top: 0;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      margin-top: 15px;
+      background-color: #ff33cc;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+    .btn:hover {
+      background-color: #e600ac;
+    }
+    #ruleta {
+      text-align: center;
+      margin-top: 60px;
+    }
+    #canvas {
+      margin: 20px auto;
+      display: block;
+      background-color: #fff;
+      border-radius: 50%;
+    }
+    #resultado {
+      font-size: 1.4em;
+      margin-top: 20px;
+      color: #ffd700;
+    }
+    footer {
+      background-color: #1e1026;
+      text-align: center;
+      padding: 20px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ALMA CONECTADA</h1>
+    <p>Lectura de cartas, amarres, limpiezas y guía espiritual</p>
+  </header>
+
+  <nav>
+    <a href="#servicios">Servicios</a>
+    <a href="#ruleta">Ruleta de Descuentos</a>
+    <a href="https://wa.me/13474344762" target="_blank">WhatsApp</a>
+  </nav>
+
+  <section id="servicios">
+    <h2 style="color:#ffd700; text-align:center;">Mis Servicios</h2>
+
+    <div class="servicio">
+      <img src="https://hips.hearstapps.com/hmg-prod/images/tarot-y-tiktok-1613475230.jpg?crop=1.00xw:1.00xh;0,0" alt="Lectura de cartas">
+      <div class="servicio-content">
+        <h3>🔮 Lectura de Cartas</h3>
+        <p>Descubre lo que el universo tiene para ti. Mediante cartas del tarot o españolas, te brindo una lectura intuitiva, precisa y amorosa sobre amor, trabajo, salud y decisiones importantes.</p>
+        <a href="https://wa.me/573001112233?text=Quiero%20una%20lectura%20de%20cartas" class="btn">Solicitar</a>
+      </div>
+    </div>
+
+    <div class="servicio">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmcTL7pYvXni3uM1fnExs4JOcS9sfd0l2W7A&s" alt="Amarre de amor">
+      <div class="servicio-content">
+        <h3>❤️ Amarre de Amor</h3>
+        <p>¿Sientes que el amor se ha enfriado o se ha perdido? Con rituales de conexión energética, puedo ayudarte a recuperar una relación, fortalecer el vínculo o atraer el verdadero amor.</p>
+        <a href="https://wa.me/573001112233?text=Estoy%20interesado%20en%20un%20amarre%20de%20amor" class="btn">Solicitar</a>
+      </div>
+    </div>
+
+    <div class="servicio">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnMHo2jrdsYJIVRUq4oooSlnAye_lg2d0j-w&s" alt="Limpieza energética">
+      <div class="servicio-content">
+        <h3>🧼 Limpieza Energética</h3>
+        <p>Rompe con las malas vibras, la envidia o el mal de ojo. Realizo limpiezas espirituales con elementos naturales, rezos y energía universal para restaurar la armonía de tu vida o tu espacio.</p>
+        <a href="https://wa.me/573001112233?text=Quiero%20una%20limpieza%20energética" class="btn">Solicitar</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="ruleta">
+    <h2 style="color:#ff66cc;">🎁 Gira la Ruleta y Gana un Descuento</h2>
+    <canvas id="canvas" width="300" height="300"></canvas>
+    <button onclick="girarRuleta()" class="btn">Girar</button>
+    <div id="resultado"></div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Alma Conectada - Todos los derechos reservados</p>
+  </footer>
+
+  <script>
+    const premios = [
+      "¡10% descuento!",
+      "15% en amarre",
+      "Limpieza 2x1",
+      "Sesión gratis",
+      "5% en todo",
+      "¡Sigue intentando!"
+    ];
+
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    const segmentos = premios.length;
+    const anguloPorSegmento = (2 * Math.PI) / segmentos;
+
+    function dibujarRuleta() {
+      for (let i = 0; i < segmentos; i++) {
+        const anguloInicio = i * anguloPorSegmento;
+        ctx.beginPath();
+        ctx.moveTo(150, 150);
+        ctx.arc(150, 150, 150, anguloInicio, anguloInicio + anguloPorSegmento);
+        ctx.fillStyle = i % 2 === 0 ? "#ffccff" : "#cc99ff";
+        ctx.fill();
+        ctx.save();
+        ctx.translate(150, 150);
+        ctx.rotate(anguloInicio + anguloPorSegmento / 2);
+        ctx.textAlign = "right";
+        ctx.fillStyle = "#000";
+        ctx.font = "bold 14px Arial";
+        ctx.fillText(premios[i], 130, 0);
+        ctx.restore();
+      }
+    }
+
+    let anguloActual = 0;
+    let velocidad = 0;
+    let girando = false;
+
+    function girarRuleta() {
+      if (girando) return;
+      velocidad = Math.random() * 0.3 + 0.2;
+      girando = true;
+      animarGiro();
+    }
+
+    function animarGiro() {
+      if (!girando) return;
+      ctx.clearRect(0, 0, 300, 300);
+      ctx.save();
+      ctx.translate(150, 150);
+      ctx.rotate(anguloActual);
+      ctx.translate(-150, -150);
+      dibujarRuleta();
+      ctx.restore();
+      anguloActual += velocidad;
+      velocidad *= 0.985;
+      if (velocidad < 0.002) {
+        girando = false;
+        const index = Math.floor(segmentos - (anguloActual / anguloPorSegmento) % segmentos) % segmentos;
+        document.getElementById("resultado").innerText = "🎊 Premio: " + premios[index];
+      } else {
+        requestAnimationFrame(animarGiro);
+      }
+    }
+
+    dibujarRuleta();
+  </script>
+</body>
+</html>
